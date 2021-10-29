@@ -1,7 +1,7 @@
 ## 代码生成工具 
 基于DDD微服务多模块项目
 ## 包结构介绍
-![包结构说明](./package-introduction.png "")
+![包结构说明](./package-introduction.png "assdad")
     
 ## 技术框架
   + `sring-cloud-alibaba`
