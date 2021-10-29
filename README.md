@@ -4,7 +4,7 @@
 ![包结构说明](./package-introduction.png "")
     
 ## 技术框架
-  + `sring-cloud`
+  + `sring-cloud-alibaba`
   + `spring-boot`
   + `mybatis-plus`
   + `nacos`
