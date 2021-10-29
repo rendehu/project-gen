@@ -22,9 +22,9 @@
 
 ## 启动方式  
 ```shell script
-java -jar miis-web-portal.jar --spring.cloud.nacos.config.server-addr=127.0.0.1:8848 \
+java -jar project-gen-jar-with-dependencies.jar --spring.cloud.nacos.config.server-addr=127.0.0.1:8848 \
                  --spring.cloud.nacos.config.file-extension=yaml \
                  --spring.cloud.nacos.config.namespace=ns-${projectName} \
-                 --spring.application.name=-${projectName} \
+                 --spring.application.name=${projectName} \
                  --server.port=8080
 ```
