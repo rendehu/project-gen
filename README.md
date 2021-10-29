@@ -24,7 +24,7 @@
 ```shell script
 java -jar miis-web-portal.jar --spring.cloud.nacos.config.server-addr=127.0.0.1:8848 \
                  --spring.cloud.nacos.config.file-extension=yaml \
-                 --spring.cloud.nacos.config.namespace=ns-miis \
-                 --spring.application.name=miis \
+                 --spring.cloud.nacos.config.namespace=ns-${projectName} \
+                 --spring.application.name=-${projectName} \
                  --server.port=8080
 ```
