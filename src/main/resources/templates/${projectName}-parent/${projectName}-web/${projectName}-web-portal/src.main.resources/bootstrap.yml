@@ -1,0 +1,30 @@
+# nacos 多配置定义 命令行添加 --nacos.server-addr:172.31.131.176:8848 即可
+spring:
+  application:
+    name: miis
+  cloud:
+    nacos:
+      username: ${nacos.username}
+      password: ${nacos.password}
+      discovery:
+        server-addr: ${nacos.server-addr}
+        namespace: ${nacos.namespace}
+      config:
+        server-addr: ${nacos.server-addr}
+        namespace: ${nacos.namespace}
+        extension-configs:
+          - data-id: redis.yml
+            group: DEFAULT_GROUP
+            refresh: false
+          - data-id: datasource.yml
+            group: DEFAULT_GROUP
+            refresh: false
+          - data-id: xxl-job.yml
+            group: DEFAULT_GROUP
+            refresh: false
+          - data-id: application.yml
+            group: DEFAULT_GROUP
+            refresh: true
+
+logging:
+  config: classpath:logback.xml

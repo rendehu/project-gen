@@ -2,6 +2,7 @@ package com.hrd;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.lang.Dict;
+import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.extra.template.Template;
 import cn.hutool.extra.template.TemplateConfig;
 import cn.hutool.extra.template.TemplateEngine;
@@ -9,6 +10,7 @@ import cn.hutool.extra.template.TemplateUtil;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 /**
  * 文件处理器
@@ -24,6 +26,8 @@ public class FileProcessor {
     protected File projectFile;
 
     protected Dict dict;
+
+    private String[] ignoreFiles = new String[]{"logback.xml", "bootstrap.yml"};
 
     public FileProcessor(File templateFile, File projectFile, Dict dict) {
         this.templateFile = templateFile;
@@ -63,7 +67,12 @@ public class FileProcessor {
         String fileName = this.templateFile.getName();
         fileName = rend(fileName);
         String templateStr = FileUtil.readString(this.templateFile, StandardCharsets.UTF_8);
-        String content = rend(templateStr);
+        String content;
+        if (!ArrayUtil.contains(ignoreFiles, fileName)) {
+            content = rend(templateStr);
+        } else {
+            content = templateStr;
+        }
         FileUtil.writeString(content, projectFile.getAbsolutePath() + File.separator + fileName, StandardCharsets.UTF_8);
     }
 

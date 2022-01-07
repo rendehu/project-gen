@@ -22,11 +22,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-log4j2</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${projectName}-type</artifactId>
             <version>0.0.1-SNAPSHOT</version>
@@ -38,6 +33,18 @@
             <optional>true</optional>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>transmittable-thread-local</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
+        </dependency>
+
+
 
     </dependencies>
 

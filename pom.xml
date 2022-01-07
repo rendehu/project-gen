@@ -10,7 +10,6 @@
 
     <packaging>jar</packaging>
     <name>project-gen</name>
-    <!-- FIXME change it to the project's website -->
     <properties>
         <project_build_sourceEncoding>UTF-8</project_build_sourceEncoding>
         <maven_compiler_source>1.8</maven_compiler_source>
