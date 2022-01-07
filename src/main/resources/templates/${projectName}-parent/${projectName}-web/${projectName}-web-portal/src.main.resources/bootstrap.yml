@@ -22,7 +22,7 @@ spring:
           - data-id: xxl-job.yml
             group: DEFAULT_GROUP
             refresh: false
-          - data-id: application.yml
+          - data-id: ${projectName}.yml
             group: DEFAULT_GROUP
             refresh: true
 
