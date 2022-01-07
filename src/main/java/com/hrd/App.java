@@ -37,7 +37,7 @@ public class App {
         dict.set("xxl_job_executor_logpath","${xxl.job.executor.logpath:/home/logs/${spring.application.name}/xxl-job}");
         dict.set("xxl_job_executor_logretentiondays","${xxl.job.executor.logretentiondays:-1}");
 
-        dict.set("pool_core_pool_size","${pool.core-pool-size:20}}");
+        dict.set("pool_core_pool_size","${pool.core-pool-size:20}");
         dict.set("pool_max_pool_size","${pool.max-pool-size:30}");
         dict.set("pool_keep_alive_time","${pool.keep-alive-time:600}");
 
