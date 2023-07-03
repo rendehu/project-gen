@@ -1,7 +1,7 @@
 # nacos 多配置定义 命令行添加 --nacos.server-addr:172.31.131.176:8848 即可
 spring:
   application:
-    name: miis
+    name: ${projectName}
   cloud:
     nacos:
       username: ${nacos.username}

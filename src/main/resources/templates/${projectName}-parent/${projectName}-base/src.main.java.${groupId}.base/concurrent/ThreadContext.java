@@ -53,12 +53,13 @@ public class ThreadContext implements InitializingBean {
         return null;
     }
 
+
     public static <T> T get(ThreadLocalKey key, Class<T> clazz) {
         return (T) get(key);
     }
 
     public void submit(Runnable runnable) {
-        this.pools.submit(runnable);
+        this.pools.execute(runnable);
     }
 
     public <V> Future<V> submit(Callable<V> callable) {
@@ -75,13 +76,31 @@ public class ThreadContext implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() {
+        this.pools = createNewPools("system");
+        log.info("System thread poll init success!! corePoolSize:{},maxPoolSize:{},keepAliveTime:{}s", this.corePoolSize, this.maxPoolSize, this.keepAliveTime);
+    }
+
+    public Executor getPools() {
+        return this.pools;
+    }
+
+    /**
+     * 创建新的线程池
+     *
+     * @param bizName
+     * @return
+     */
+    public ExecutorService createNewPools(String bizName) {
+        return createNewPools(bizName, this.corePoolSize, this.maxPoolSize);
+    }
+
+    public ExecutorService createNewPools(String bizName, int corePoolSize, int maxPoolSize) {
         ThreadFactoryBuilder builder = ThreadFactoryBuilder.create();
         builder.setDaemon(true)
-                .setNamePrefix("miis-thread-pool")
+                .setNamePrefix(bizName + "-thread-pool")
                 .setPriority(6)
                 .setUncaughtExceptionHandler((t, e) -> log.error("UncaughtException for thread:" + t.getName(), e));
-        ExecutorService originPool = new ThreadPoolExecutor(corePoolSize, maxPoolSize, keepAliveTime, TimeUnit.SECONDS, new LinkedBlockingDeque<>(), builder.build());
-        this.pools = TtlExecutors.getTtlExecutorService(originPool);
-        log.info("System thread poll init success!! corePoolSize:${empty},maxPoolSize:${empty},keepAliveTime:${empty}s", this.corePoolSize, this.maxPoolSize, this.keepAliveTime);
+        ExecutorService originPool = new ThreadPoolExecutor(corePoolSize, maxPoolSize, this.keepAliveTime, TimeUnit.SECONDS, new LinkedBlockingDeque<>(), builder.build());
+        return TtlExecutors.getTtlExecutorService(originPool);
     }
 }

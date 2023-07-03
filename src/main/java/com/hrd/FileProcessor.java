@@ -27,7 +27,13 @@ public class FileProcessor {
 
     protected Dict dict;
 
-    private String[] ignoreFiles = new String[]{"logback.xml", "bootstrap.yml"};
+    private String[] ignoreFiles = new String[]{
+            "logback.xml",
+            "bootstrap.yml",
+            "Mapper.java.ftl",
+            "Service.java.ftl",
+            "ServiceImpl.java.ftl"
+    };
 
     public FileProcessor(File templateFile, File projectFile, Dict dict) {
         this.templateFile = templateFile;

@@ -39,4 +39,7 @@ public class PersistenceConfiguration {
         interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
         return interceptor;
     }
+
+
+
 }

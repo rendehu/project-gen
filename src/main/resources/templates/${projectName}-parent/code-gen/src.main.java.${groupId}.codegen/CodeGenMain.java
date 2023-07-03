@@ -27,8 +27,8 @@ public class CodeGenMain {
     public static void main(String[] args) {
 
         //数据源配置
-        DataSourceConfig.Builder dscBuilder = new DataSourceConfig.Builder("jdbc:postgresql://host:port/db",
-                "postgres", "xxx");
+        DataSourceConfig.Builder dscBuilder = new DataSourceConfig.Builder("jdbc:mysql://172.30.11.16:3306/cdss_dev",
+                "root", "iflytek!");
         String path = Objects.requireNonNull(CodeGenMain.class.getClassLoader().getResource("")).getPath();
         String ${projectName}ParentPath = StrUtil.subBefore(path, "code-gen", true);
         Map<OutputFile, String> pathMap = new HashMap<>(10);
@@ -41,11 +41,14 @@ public class CodeGenMain {
 
         FastAutoGenerator.create(dscBuilder)
                 // 全局配置
-                .globalConfig((scanner, builder) -> builder.author("rdhu3@iflytek.com").fileOverride())
+                .globalConfig((scanner, builder) -> builder.author("452151476@qq.com").fileOverride())
                 // 包配置
                 .packageConfig((scanner, builder) -> builder.parent("${groupId}.persistence").pathInfo(pathMap))
-                .templateConfig((scanner, builder) -> builder.disable(TemplateType.CONTROLLER, TemplateType.SERVICE, TemplateType.SERVICEIMPL))
-                // 策略配置
+                .templateConfig((scanner, builder) -> builder.disable(TemplateType.CONTROLLER)
+                        .mapper("/templates/Mapper.java")
+                        .service("/templates/Service.java")
+                        .serviceImpl("/templates/ServiceImpl.java")
+                )                // 策略配置
                 .strategyConfig((scanner, builder) ->
                         builder.addInclude(getTables(scanner.apply("请输入表名，多个英文逗号分隔？所有输入 all")))
                                 .entityBuilder().enableLombok().enableChainModel().idType(IdType.INPUT)
