@@ -1,4 +1,4 @@
-package com.iflytek.medical.persistence.mbp;
+package ${groupId}.persistence.mbp;
 
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.injector.DefaultSqlInjector;
@@ -12,6 +12,7 @@ import java.util.List;
  * @author rende.hu
  * @since 2022-12-07 11:19:46
  */
+<#if true>
 @Configuration
 public class MbpConfiguration {
 
@@ -31,5 +32,5 @@ public class MbpConfiguration {
         };
     }
 
-
+</#if>
 }

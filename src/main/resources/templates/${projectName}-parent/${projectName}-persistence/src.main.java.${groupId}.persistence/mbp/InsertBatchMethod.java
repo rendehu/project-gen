@@ -1,4 +1,4 @@
-package com.iflytek.medical.persistence.mbp;
+package ${groupId}.persistence.mbp;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
@@ -61,8 +61,8 @@ public class InsertBatchMethod extends AbstractMethod {
     private String valueScript(TableInfo tableInfo) {
         final StringBuilder valueSql = new StringBuilder();
         valueSql.append("<foreach collection=\"list\" item=\"item\" index=\"index\" open=\"(\" separator=\"),(\" close=\")\">");
-        valueSql.append("#{item.").append(tableInfo.getKeyProperty()).append("},");
-        tableInfo.getFieldList().forEach(x -> valueSql.append("#{item.").append(x.getProperty()).append("},"));
+        valueSql.append("${JLL}item.").append(tableInfo.getKeyProperty()).append("${LR},");
+        tableInfo.getFieldList().forEach(x -> valueSql.append("${JLL}item.").append(x.getProperty()).append("${LR},"));
         valueSql.delete(valueSql.length() - 1, valueSql.length());
         valueSql.append("</foreach>");
         return valueSql.toString();

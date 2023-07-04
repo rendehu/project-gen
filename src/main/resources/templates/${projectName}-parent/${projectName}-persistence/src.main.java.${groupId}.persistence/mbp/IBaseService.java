@@ -1,4 +1,4 @@
-package com.iflytek.medical.persistence.mbp;
+package ${groupId}.persistence.mbp;
 
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.service.IService;

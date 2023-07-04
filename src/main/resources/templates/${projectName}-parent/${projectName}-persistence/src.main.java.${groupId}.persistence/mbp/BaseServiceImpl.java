@@ -1,4 +1,4 @@
-package com.iflytek.medical.persistence.mbp;
+package ${groupId}.persistence.mbp;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -11,6 +11,7 @@ import java.util.Collection;
  * @author rende.hu
  * @since 2022-12-07 11:35:29
  */
+<#if true>
 public class BaseServiceImpl<M extends IBaseMapper<T>, T> extends ServiceImpl<M, T> implements IBaseService<T> {
 
     private static final int BATCH_SIZE = 500;
@@ -54,3 +55,5 @@ public class BaseServiceImpl<M extends IBaseMapper<T>, T> extends ServiceImpl<M,
 
     }
 }
+
+</#if>

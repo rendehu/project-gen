@@ -47,6 +47,9 @@ public class App {
         dict.set("notesStarts","/**");
         dict.set("currentDate", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         dict.set("empty","{}");
+        //特殊字符替换
+        dict.set("JLL","#{");
+        dict.set("LR","}");
 
         String localParentPath = scan("请输入项目本地存放目录");
         localParentPath = localParentPath.endsWith(File.separator) ? localParentPath.substring(0, localParentPath.length() - 1) : localParentPath;
