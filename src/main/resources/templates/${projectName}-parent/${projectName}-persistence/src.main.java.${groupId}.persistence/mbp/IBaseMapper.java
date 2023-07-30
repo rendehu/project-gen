@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.Collection;
 
 /**
- * @author rende.hu
+ * @author ${author}
  * @since 2022-12-07 11:23:44
  */
 public interface IBaseMapper<T> extends BaseMapper<T> {

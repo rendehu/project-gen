@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author rende.hu
+ * @author ${author}
  * @since 2022-12-07 10:40:23
  */
 public class InsertBatchMethod extends AbstractMethod {
@@ -57,14 +57,15 @@ public class InsertBatchMethod extends AbstractMethod {
         return "(" + String.join(",", colList) + ")";
     }
 
-
+<#noparse>
     private String valueScript(TableInfo tableInfo) {
         final StringBuilder valueSql = new StringBuilder();
         valueSql.append("<foreach collection=\"list\" item=\"item\" index=\"index\" open=\"(\" separator=\"),(\" close=\")\">");
-        valueSql.append("${JLL}item.").append(tableInfo.getKeyProperty()).append("${LR},");
-        tableInfo.getFieldList().forEach(x -> valueSql.append("${JLL}item.").append(x.getProperty()).append("${LR},"));
+        valueSql.append("#{item.").append(tableInfo.getKeyProperty()).append("},");
+        tableInfo.getFieldList().forEach(x -> valueSql.append("#{item.").append(x.getProperty()).append("},"));
         valueSql.delete(valueSql.length() - 1, valueSql.length());
         valueSql.append("</foreach>");
         return valueSql.toString();
     }
+</#noparse>
 }

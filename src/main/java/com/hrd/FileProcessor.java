@@ -27,13 +27,6 @@ public class FileProcessor {
 
     protected Dict dict;
 
-    private String[] ignoreFiles = new String[]{
-            "logback.xml",
-            "bootstrap.yml",
-            "Mapper.java.ftl",
-            "Service.java.ftl",
-            "ServiceImpl.java.ftl"
-    };
 
     public FileProcessor(File templateFile, File projectFile, Dict dict) {
         this.templateFile = templateFile;
@@ -73,12 +66,7 @@ public class FileProcessor {
         String fileName = this.templateFile.getName();
         fileName = rend(fileName);
         String templateStr = FileUtil.readString(this.templateFile, StandardCharsets.UTF_8);
-        String content;
-        if (!ArrayUtil.contains(ignoreFiles, fileName)) {
-            content = rend(templateStr);
-        } else {
-            content = templateStr;
-        }
+        String content = rend(templateStr);
         FileUtil.writeString(content, projectFile.getAbsolutePath() + File.separator + fileName, StandardCharsets.UTF_8);
     }
 

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 /**
- * @author rende.hu
+ * @author ${author}
  * @since 2022-12-07 11:19:46
  */
 <#if true>

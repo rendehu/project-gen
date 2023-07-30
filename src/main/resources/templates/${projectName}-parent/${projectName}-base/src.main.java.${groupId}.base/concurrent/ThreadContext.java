@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 import java.util.concurrent.Callable;
+import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -19,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * thread  context 线程相关操作
- * @author rende.hu
+ * @author ${author}
  * @since 2021-12-23 10:39:04
  */
 @Component

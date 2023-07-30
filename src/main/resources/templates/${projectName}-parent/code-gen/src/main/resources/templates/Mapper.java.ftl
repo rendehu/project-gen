@@ -1,4 +1,4 @@
-package ${package.Mapper};
+<#noparse>package ${package.Mapper};
 
 import ${package.Entity}.${entity};
 import ${package.Parent}.mbp.IBaseMapper;
@@ -23,4 +23,4 @@ import ${package.Parent}.mbp.IBaseMapper;
     public interface ${table.mapperName} extends IBaseMapper<${entity}> {
 
     }
-</#if>
+</#if></#noparse>

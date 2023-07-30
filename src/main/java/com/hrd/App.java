@@ -1,6 +1,7 @@
 package com.hrd;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.lang.Assert;
 import cn.hutool.core.lang.Dict;
 import cn.hutool.core.util.StrUtil;
 
@@ -8,6 +9,7 @@ import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  * Hello world!
@@ -19,6 +21,13 @@ public class App {
                 .set("projectDesc", scan("请输入项目描述:"))
                 .set("groupId", scan("请输入项目groupId: eg. org.springframework"))
                 .set("author",scan("请输入项目author"));
+        //project校验
+        String projectName = (String) dict.get("projectName");
+        Assert.isTrue(Pattern.matches("[a-z]+[-]*[a-z]+",projectName ),"项目名称必须英文小写字母开头,多个英文单词只能'-'连接");
+        String camelProjectName = StrUtil.toCamelCase(projectName.replace("-","_"));
+
+        dict.set("camelProjectName",camelProjectName);
+
         dict.set("groupPackagePath", ((String) dict.get("groupId")).replace(".", "/"));
         // pom
         dict.set("java_version", "${java.version}");
@@ -47,9 +56,8 @@ public class App {
         dict.set("notesStarts","/**");
         dict.set("currentDate", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         dict.set("empty","{}");
-        //特殊字符替换
-        dict.set("JLL","#{");
-        dict.set("LR","}");
+        //parent
+        dict.set("parentGroupId",StrUtil.subBefore((CharSequence) dict.get("groupId"),".",true));
 
         String localParentPath = scan("请输入项目本地存放目录");
         localParentPath = localParentPath.endsWith(File.separator) ? localParentPath.substring(0, localParentPath.length() - 1) : localParentPath;

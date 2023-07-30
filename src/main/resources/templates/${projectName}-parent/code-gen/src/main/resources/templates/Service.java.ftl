@@ -1,4 +1,4 @@
-package ${package.Service};
+<#noparse>package ${package.Service};
 
 import ${package.Entity}.${entity};
 import ${package.Parent}.mbp.IBaseService;
@@ -17,4 +17,4 @@ import ${package.Parent}.mbp.IBaseService;
     public interface ${table.serviceName} extends IBaseService<${entity}> {
 
     }
-</#if>
+</#if></#noparse>

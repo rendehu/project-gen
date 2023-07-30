@@ -1,7 +1,7 @@
 package ${groupId}.base.concurrent;
 
 /**
- * @author rende.hu
+ * @author ${author}
  * @since 2021-12-22 17:59:10
  */
 public abstract class Task extends Thread {

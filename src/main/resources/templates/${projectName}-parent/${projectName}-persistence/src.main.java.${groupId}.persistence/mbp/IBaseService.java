@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.Collection;
 
 /**
- * @author rende.hu
+ * @author ${author}
  * @since 2022-12-07 11:34:15
  */
 public interface IBaseService<T> extends IService<T> {

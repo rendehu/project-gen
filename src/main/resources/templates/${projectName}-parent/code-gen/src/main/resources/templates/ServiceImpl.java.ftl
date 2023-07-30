@@ -1,4 +1,4 @@
-package ${package.ServiceImpl};
+<#noparse>package ${package.ServiceImpl};
 
 import ${package.Entity}.${entity};
 import ${package.Mapper}.${table.mapperName};
@@ -23,4 +23,4 @@ import org.springframework.stereotype.Service;
     public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
 
     }
-</#if>
+</#if></#noparse>

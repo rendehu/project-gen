@@ -7,7 +7,7 @@ import ${groupId}.util.exception.Base${projectName?cap_first}Exception;
  * @author ${author}
  * @since ${currentDate}
  */
-public class ${projectName?cap_first}AuthenticationException extends Base${projectName?cap_first}Exception {
+public class ${camelProjectName?cap_first}AuthenticationException extends Base${projectName?cap_first}Exception {
 
 
     public ${projectName?cap_first}AuthenticationException(String message, Object... args) {

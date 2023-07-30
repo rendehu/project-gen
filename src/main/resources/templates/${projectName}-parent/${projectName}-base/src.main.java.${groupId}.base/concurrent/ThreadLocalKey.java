@@ -1,7 +1,7 @@
 package ${groupId}.base.concurrent;
 
 /**
- * @author rende.hu
+ * @author ${author}
  * @since 2021-12-23 10:39:37
  */
 public enum  ThreadLocalKey {

@@ -8,13 +8,13 @@ import cn.hutool.core.util.StrUtil;
  * @author ${author}
  * @since ${currentDate}
  */
-public abstract class Base${projectName?cap_first}Exception extends RuntimeException {
+public abstract class Base${camelProjectName?cap_first}Exception extends RuntimeException {
 
-    public Base${projectName?cap_first}Exception(String message, Object... args) {
+    public Base${camelProjectName?cap_first}Exception(String message, Object... args) {
         super(formatMessage(message, args));
     }
 
-    public Base${projectName?cap_first}Exception(Throwable cause, String message, String... args) {
+    public Base${camelProjectName?cap_first}Exception(Throwable cause, String message, String... args) {
         super(formatMessage(message, args), cause);
     }
 

@@ -2,6 +2,7 @@
 spring:
   application:
     name: ${projectName}
+<#noparse>
   cloud:
     nacos:
       username: ${nacos.username}
@@ -28,3 +29,4 @@ spring:
 
 logging:
   config: classpath:logback.xml
+</#noparse>

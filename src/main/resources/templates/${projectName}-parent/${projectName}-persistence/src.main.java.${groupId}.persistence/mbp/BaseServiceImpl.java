@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import java.util.Collection;
 
 /**
- * @author rende.hu
+ * @author ${author}
  * @since 2022-12-07 11:35:29
  */
 <#if true>

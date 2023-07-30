@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
  * @author ${author}
  * @since ${currentDate}
  */
-public interface ${projectName?cap_first}Const {
+public interface ${camelProjectName?cap_first}Const {
 
     /**
      * 标准日期格式
