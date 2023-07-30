@@ -1,5 +1,4 @@
-<#noparse>
-<?xml version="1.0" encoding="UTF-8"?>
+<#noparse><?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <!-- %logger{36} 表示 Logger 名字最长36个字符 -->
     <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{TraceId}] [%thread] %-5level %logger{50} - %msg%n"/>
@@ -134,5 +133,4 @@
 
 
 
-</configuration>
-</#noparse>
+</configuration></#noparse>
