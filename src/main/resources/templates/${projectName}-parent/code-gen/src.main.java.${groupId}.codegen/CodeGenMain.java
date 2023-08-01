@@ -1,4 +1,6 @@
-package ${groupId}.codegen;
+package $
+
+{groupId}.codegen;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -28,13 +30,21 @@ public class CodeGenMain {
         DataSourceConfig.Builder dscBuilder = new DataSourceConfig.Builder("jdbc:mysql://172.30.11.16:3306/cdss_dev",
                 "root", "iflytek!");
         String path = Objects.requireNonNull(CodeGenMain.class.getClassLoader().getResource("")).getPath();
-        String ${camelProjectName}ParentPath = StrUtil.subBefore(path, "code-gen", true);
+        String $ {
+            camelProjectName
+        } ParentPath = StrUtil.subBefore(path, "code-gen", true);
         Map<OutputFile, String> pathMap = new HashMap<>(10);
 
         //这里只需要dao模板生成文件 templateConfig中会去掉 service/serviceImpl/controller 的模板生成文件
-        pathMap.put(OutputFile.mapper, ${camelProjectName}ParentPath + "${projectName}-persistence/src/main/java/${groupPackagePath}/persistence/mapper/");
-        pathMap.put(OutputFile.entity, ${camelProjectName}ParentPath + "${projectName}-persistence/src/main/java/${groupPackagePath}/persistence/entity/");
-        pathMap.put(OutputFile.mapperXml, ${camelProjectName}ParentPath + "${projectName}-persistence/src/main/resources/mapper/");
+        pathMap.put(OutputFile.mapper, $ {
+            camelProjectName
+        } ParentPath + "${projectName}-persistence/src/main/java/${groupPackagePath}/persistence/mapper/");
+        pathMap.put(OutputFile.entity, $ {
+            camelProjectName
+        } ParentPath + "${projectName}-persistence/src/main/java/${groupPackagePath}/persistence/entity/");
+        pathMap.put(OutputFile.mapperXml, $ {
+            camelProjectName
+        } ParentPath + "${projectName}-persistence/src/main/resources/mapper/");
 
 
         FastAutoGenerator.create(dscBuilder)
@@ -48,7 +58,7 @@ public class CodeGenMain {
                         .serviceImpl("/templates/ServiceImpl.java")
                 )                // 策略配置
                 .strategyConfig((scanner, builder) ->
-                        cfgTable(scanner.apply("请输入表名，多张表使用','分隔;\n前缀表使用 '*'结尾 如 'drgs*';\n全量请输入'all'"), builder)
+                        cfgTable(scanner.apply("请输入表名，多张表使用','分隔;全量直接回车'"), builder)
                                 .entityBuilder()
                                 .enableLombok()
                                 .enableChainModel()
@@ -70,11 +80,7 @@ public class CodeGenMain {
         if (StrUtil.isBlank(tableStrategy)) {
             return builder;
         }
-        if (tableStrategy.endsWith("*")) {
-            builder.addTablePrefix(tableStrategy.substring(0, tableStrategy.length() - 1));
-        } else {
-            builder.addInclude(tableStrategy.split(","));
-        }
+        builder.addInclude(tableStrategy.split(","));
         return builder;
     }
 }
