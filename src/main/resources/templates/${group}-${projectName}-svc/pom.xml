@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.iflytek.medical.mboot</groupId>
+        <artifactId>mboot-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>${groupId}</groupId>
+    <artifactId>${group}-${projectName}-svc</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>${group}-${projectName}-svc</name>
+    <description>${projectCnName}</description>
+    <packaging>pom</packaging>
+    <properties>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+
+    <developers>
+        <developer>
+            <id>rdhu3</id>
+            <name>胡仁德</name>
+            <email>rdhu3@iflytek.com</email>
+        </developer>
+    </developers>
+
+    <modules>
+        <module>${group}-${projectName}-persistence</module>
+        <module>${group}-${projectName}-type</module>
+        <module>${group}-${projectName}-web</module>
+        <module>code-gen</module>
+    </modules>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>mvn-repo</name>
+            <url>https://depend.iflytek.com/artifactory/mvn-repo/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <!--涉及到权限，需要配置BU/BG的仓库 -->
+        <snapshotRepository>
+            <id>mvn-repo</id>
+            <url>
+                https://depend.iflytek.com/artifactory/zhyl-mvn-snapshot-private
+            </url>
+        </snapshotRepository>
+        <!--涉及到权限，需要配置BU/BG的仓库 -->
+        <repository>
+            <id>mvn-repo</id>
+            <url>
+                https://depend.iflytek.com/artifactory/zhyl-mvn-release-private
+            </url>
+        </repository>
+    </distributionManagement>
+
+
+
+    <dependencyManagement>
+    </dependencyManagement>
+
+    <!--设置三套环境 dev:开发  beta:测试  prod：生产-->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <profiles.active>dev</profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>beta</id>
+            <properties>
+                <profiles.active>beta</profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profiles.active>prod</profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>

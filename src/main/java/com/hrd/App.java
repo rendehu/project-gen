@@ -16,11 +16,13 @@ import java.util.regex.Pattern;
  */
 public class App {
     public static void main(String[] args) {
-        Dict dict = Dict.create().set("projectName", scan("请输入项目简称(建议2-4个英文小写简称如:xxl):"))
+        Dict dict = Dict.create()
+                .set("group", scan("请输入项目组简称(建议2-个英文小写简称如:xxl):"))
+                .set("projectName", scan("请输入项目简称(英文小写):"))
                 .set("projectCnName", scan("请输入项目中文名称"))
                 .set("projectDesc", scan("请输入项目描述:"))
-                .set("groupId", scan("请输入项目groupId: eg. org.springframework"))
                 .set("author",scan("请输入项目author"));
+        dict.set("groupId",String.join(".","com.iflyhealth",dict.get("group").toString()));
         //project校验
         String projectName = (String) dict.get("projectName");
         Assert.isTrue(Pattern.matches("[a-z]+[-]*[a-z]+",projectName ),"项目名称必须英文小写字母开头,多个英文单词只能'-'连接");
@@ -65,7 +67,7 @@ public class App {
         System.out.println(StrUtil.format("basic data: {}", dict));
 
         File projectFile = FileUtil.file(new File(localParentPath));
-        File templateFile = FileUtil.file("classpath:templates/${projectName}-parent");
+        File templateFile = FileUtil.file("classpath:templates/${group}-${projectName}-svc");
 
         new FileProcessor(templateFile, projectFile, dict).process();
     }
