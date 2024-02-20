@@ -1,5 +1,6 @@
-package ${groupId}.web.portal;
+package ${groupId}.${projectName}.web;
 
+import cn.hutool.extra.spring.EnableSpringUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,9 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since ${currentDate}
  */
 @SpringBootApplication(scanBasePackages = "${groupId}")
-public class ${camelProjectName?cap_first}PortalApplication {
+@EnableSpringUtil
+public class ${camelProjectName?cap_first}WebApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(${projectName?cap_first}PortalApplication.class, args);
+        SpringApplication.run(${projectName?cap_first}WebApplication.class, args);
     }
 }

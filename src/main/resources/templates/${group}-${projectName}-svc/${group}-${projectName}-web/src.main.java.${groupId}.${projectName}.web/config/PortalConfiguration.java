@@ -1,4 +1,4 @@
-package ${groupId}.${projectName}.web.portal.config;
+package ${groupId}.${projectName}.web.config;
 
 import org.springframework.context.annotation.Configuration;
 

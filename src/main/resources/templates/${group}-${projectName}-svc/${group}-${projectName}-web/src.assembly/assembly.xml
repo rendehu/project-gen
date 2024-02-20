@@ -1,0 +1,46 @@
+<#noparse>
+        <?xml version="1.0" encoding="UTF-8"?>
+<assembly>
+<!-- 可自定义，这里指定的是项目环境 -->
+<!-- spring-boot-assembly-local-1.0.RELEASE.tar.gz -->
+<!-- ${profileActive}-${project.version} -->
+<id>assembly</id>
+<!-- 打包的类型，如果有N个，将会打N个类型的包 -->
+<formats>
+    <format>tar.gz</format>
+</formats>
+<includeBaseDirectory>true</includeBaseDirectory>
+<fileSets>
+    <!-- 指定输出target/classes中的配置文件到config目录中 -->
+    <fileSet>
+        <directory>${project.build.directory}/classes</directory>
+        <outputDirectory>config</outputDirectory>
+        <includes>
+            <include>*.yml</include>
+            <include>*.yaml</include>
+            <include>*.properties</include>
+            <include>*.xml</include>
+        </includes>
+    </fileSet>
+
+    <!-- 配置静态文件路径 -->
+    <fileSet>
+        <directory>${project.build.directory}/classes/static</directory>
+        <outputDirectory>static</outputDirectory>
+    </fileSet>
+
+    <!-- bin -->
+    <fileSet>
+        <directory>${project.build.directory}/../src/bin</directory>
+        <outputDirectory>bin</outputDirectory>
+    </fileSet>
+    <fileSet>
+        <directory>${project.build.directory}</directory>
+        <outputDirectory>/</outputDirectory>
+        <includes>
+            <include>${project.build.finalName}.jar</include>
+        </includes>
+    </fileSet>
+</fileSets>
+</assembly>
+</#noparse>

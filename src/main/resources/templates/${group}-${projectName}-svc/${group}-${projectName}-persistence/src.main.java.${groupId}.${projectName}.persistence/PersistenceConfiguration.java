@@ -35,7 +35,11 @@ public class PersistenceConfiguration {
 
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         //分页、乐观锁
+        <#if dbType=="postgresql">
         interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.POSTGRE_SQL));
+        <#else>
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+        </#if>
         interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
         return interceptor;
     }

@@ -1,32 +1,38 @@
-# nacos 多配置定义 命令行添加 --nacos.server-addr:172.31.131.176:8848 即可
+# nacos 多配置定义 命令行添加 --nacos.server-addr:172.31.131.176:8848 即可 ------修改呀
+nacos:
+  username: nacos
+  password: nacos
+  namespace: dev
+  server-addr: 172.31.186.107:8848
 spring:
   application:
     name: ${projectName}
-<#noparse>
   cloud:
     nacos:
-      username: ${nacos.username}
-      password: ${nacos.password}
+      username: <#noparse>${nacos.username}</#noparse>
+      password: <#noparse>${nacos.password}</#noparse>
       discovery:
-        server-addr: ${nacos.server-addr}
-        namespace: ${nacos.namespace}
+        server-addr: <#noparse>${nacos.server-addr}</#noparse>
+        namespace: <#noparse>${nacos.namespace}</#noparse>
       config:
-        server-addr: ${nacos.server-addr}
-        namespace: ${nacos.namespace}
+        server-addr: <#noparse>${nacos.server-addr}</#noparse>
+        namespace: <#noparse>${nacos.namespace}</#noparse>
         extension-configs:
-          - data-id: redis.yml
-            group: DEFAULT_GROUP
-            refresh: false
           - data-id: datasource.yml
             group: DEFAULT_GROUP
             refresh: false
-          - data-id: xxl-job.yml
-            group: DEFAULT_GROUP
-            refresh: false
-          - data-id: ${projectName}.yml
+          - data-id: <#noparse>${spring.application.name}.yml</#noparse>
             group: DEFAULT_GROUP
             refresh: true
-
 logging:
   config: classpath:logback.xml
-</#noparse>
+feign:
+  okhttp:
+    enabled: true
+  client:
+    config:
+      default:  #这里用default就是全局配置，如果是写服务名称，则是针对某个微服务的配置
+        loggerLevel: FULL #日志级别
+mybatis-plus:
+  configuration:
+    log-impl: com.iflytek.medical.mboot.tools.mbp.log.Slf4jLogImpl

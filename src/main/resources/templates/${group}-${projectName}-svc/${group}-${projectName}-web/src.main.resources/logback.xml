@@ -1,136 +1,137 @@
 <#noparse><?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <!-- %logger{36} 表示 Logger 名字最长36个字符 -->
-    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{TraceId}] [%thread] %-5level %logger{50} - %msg%n"/>
-    <!-- 定义日志存储的路径 -->
-    <property name="LOG_PATH" value="./logs"/>
+<!-- %logger{36} 表示 Logger 名字最长36个字符 -->
+<property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{TraceId}] [%thread] %-5level %logger{50} - %msg%n"/>
+<!-- 定义日志存储的路径 -->
+<property name="LOG_PATH" value="${logHome:-./logs}"/>
 
-    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>${LOG_PATTERN}</pattern>
-        </encoder>
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>INFO</level>
-        </filter>
-    </appender>
+<appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+        <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+        <level>INFO</level>
+    </filter>
+</appender>
 
-    <appender name="Debug" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/debug.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}/debug.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
-            <maxHistory>120</maxHistory>
-            <totalSizeCap>10GB</totalSizeCap>
-            <maxFileSize>100MB</maxFileSize>
-            <cleanHistoryOnStart>true</cleanHistoryOnStart>
-        </rollingPolicy>
-        <encoder>
-            <pattern>${LOG_PATTERN}</pattern>
-        </encoder>
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>DEBUG</level>
-        </filter>
-    </appender>
+<appender name="Debug" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_PATH}/debug.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+        <fileNamePattern>${LOG_PATH}/debug.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+        <maxHistory>120</maxHistory>
+        <totalSizeCap>10GB</totalSizeCap>
+        <maxFileSize>100MB</maxFileSize>
+        <cleanHistoryOnStart>true</cleanHistoryOnStart>
+    </rollingPolicy>
+    <encoder>
+        <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+        <level>DEBUG</level>
+    </filter>
+</appender>
 
-    <appender name="Info" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/info.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}/info.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
-            <maxHistory>60</maxHistory>
-            <totalSizeCap>5GB</totalSizeCap>
-            <maxFileSize>100MB</maxFileSize>
-            <cleanHistoryOnStart>true</cleanHistoryOnStart>
-        </rollingPolicy>
-        <encoder>
+<appender name="Info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_PATH}/info.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+        <fileNamePattern>${LOG_PATH}/info.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+        <maxHistory>60</maxHistory>
+        <totalSizeCap>5GB</totalSizeCap>
+        <maxFileSize>100MB</maxFileSize>
+        <cleanHistoryOnStart>true</cleanHistoryOnStart>
+    </rollingPolicy>
+    <encoder>
 
-            <pattern>${LOG_PATTERN}</pattern>
+        <pattern>${LOG_PATTERN}</pattern>
 
-        </encoder>
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>INFO</level>
-        </filter>
-    </appender>
-    <appender name="Warn" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/warn.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}/warn.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
-            <maxHistory>30</maxHistory>
-            <totalSizeCap>5GB</totalSizeCap>
-            <maxFileSize>100MB</maxFileSize>
-            <cleanHistoryOnStart>true</cleanHistoryOnStart>
-        </rollingPolicy>
-        <encoder>
-            <pattern>${LOG_PATTERN}</pattern>
-        </encoder>
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>WARN</level>
-        </filter>
-    </appender>
-    <appender name="Error" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/error.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}/error.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
-            <maxHistory>30</maxHistory>
-            <totalSizeCap>5GB</totalSizeCap>
-            <maxFileSize>100MB</maxFileSize>
-            <cleanHistoryOnStart>true</cleanHistoryOnStart>
-        </rollingPolicy>
-        <encoder>
-            <pattern>${LOG_PATTERN}</pattern>
-        </encoder>
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>ERROR</level>
-        </filter>
-    </appender>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+        <level>INFO</level>
+    </filter>
+</appender>
+<appender name="Warn" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_PATH}/warn.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+        <fileNamePattern>${LOG_PATH}/warn.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+        <maxHistory>30</maxHistory>
+        <totalSizeCap>5GB</totalSizeCap>
+        <maxFileSize>100MB</maxFileSize>
+        <cleanHistoryOnStart>true</cleanHistoryOnStart>
+    </rollingPolicy>
+    <encoder>
+        <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+        <level>WARN</level>
+    </filter>
+</appender>
+<appender name="Error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_PATH}/error.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+        <fileNamePattern>${LOG_PATH}/error.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+        <maxHistory>30</maxHistory>
+        <totalSizeCap>5GB</totalSizeCap>
+        <maxFileSize>100MB</maxFileSize>
+        <cleanHistoryOnStart>true</cleanHistoryOnStart>
+    </rollingPolicy>
+    <encoder>
+        <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+        <level>ERROR</level>
+    </filter>
+</appender>
 
-    <appender name="sqlAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/sql.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}/sql.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
-            <maxHistory>30</maxHistory>
-            <totalSizeCap>5GB</totalSizeCap>
-            <maxFileSize>100MB</maxFileSize>
-            <cleanHistoryOnStart>true</cleanHistoryOnStart>
-        </rollingPolicy>
-        <encoder>
-            <pattern>${LOG_PATTERN}</pattern>
-        </encoder>
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>DEBUG</level>
-        </filter>
-    </appender>
-
-
-
-
-    <!-- 配置异步记录 AsyncAppender -->
-    <appender name="ASYNC-Console" class="ch.qos.logback.classic.AsyncAppender">
-        <discardingThreshold>0</discardingThreshold>
-        <queueSize>1024</queueSize>
-        <neverBlock>true</neverBlock>
-        <appender-ref ref="Console"/>
-    </appender>
-    <appender name="ASYNC-Debug" class="ch.qos.logback.classic.AsyncAppender">
-        <discardingThreshold>0</discardingThreshold>
-        <queueSize>1024</queueSize>
-        <neverBlock>true</neverBlock>
-        <appender-ref ref="Debug"/>
-    </appender>
-
-    <root level="DEBUG">
-        <appender-ref ref="ASYNC-Console"/>
-        <appender-ref ref="ASYNC-Debug"/>
-        <appender-ref ref="Info"/>
-        <appender-ref ref="Warn"/>
-        <appender-ref ref="Error"/>
-    </root>
-
-
-    <!-- sql 日志记录-->
-    <logger name="com.iflytek.medical.dt.mapper" level="debug">
-        <appender-ref ref="sqlAppender"/>
-    </logger>
+<appender name="sqlAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_PATH}/sql.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+        <fileNamePattern>${LOG_PATH}/sql.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+        <maxHistory>30</maxHistory>
+        <totalSizeCap>5GB</totalSizeCap>
+        <maxFileSize>100MB</maxFileSize>
+        <cleanHistoryOnStart>true</cleanHistoryOnStart>
+    </rollingPolicy>
+    <encoder>
+        <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+        <level>DEBUG</level>
+    </filter>
+</appender>
 
 
 
 
-</configuration></#noparse>
+<!-- 配置异步记录 AsyncAppender -->
+<appender name="ASYNC-Console" class="ch.qos.logback.classic.AsyncAppender">
+    <discardingThreshold>0</discardingThreshold>
+    <queueSize>1024</queueSize>
+    <neverBlock>true</neverBlock>
+    <appender-ref ref="Console"/>
+</appender>
+<appender name="ASYNC-Debug" class="ch.qos.logback.classic.AsyncAppender">
+    <discardingThreshold>0</discardingThreshold>
+    <queueSize>1024</queueSize>
+    <neverBlock>true</neverBlock>
+    <appender-ref ref="Debug"/>
+</appender>
+
+<root level="DEBUG">
+    <appender-ref ref="ASYNC-Console"/>
+    <appender-ref ref="ASYNC-Debug"/>
+    <appender-ref ref="Info"/>
+    <appender-ref ref="Warn"/>
+    <appender-ref ref="Error"/>
+</root>
+
+
+<!-- sql 日志记录-->
+<logger name="com.iflyhealth.dprs.eval.persistence.mapper" level="debug">
+    <appender-ref ref="sqlAppender"/>
+</logger>
+
+
+
+
+</configuration>
+</#noparse>

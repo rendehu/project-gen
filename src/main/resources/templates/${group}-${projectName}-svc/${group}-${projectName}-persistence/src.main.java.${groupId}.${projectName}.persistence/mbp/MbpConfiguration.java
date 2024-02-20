@@ -12,7 +12,6 @@ import java.util.List;
  * @author ${author}
  * @since 2022-12-07 11:19:46
  */
-<#if true>
 @Configuration
 public class MbpConfiguration {
 
@@ -32,5 +31,4 @@ public class MbpConfiguration {
         };
     }
 
-</#if>
 }
