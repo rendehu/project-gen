@@ -32,7 +32,7 @@ public class CodeGenMain {
                 .schema("${projectName}");
         <#else>
         DataSourceConfig.Builder dscBuilder = new DataSourceConfig.Builder("jdbc:mysql://172.30.11.16:3306/${group}_dev?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai",
-                "root", "iflytek!"
+                "root", "iflytek!");
         </#if>
         String path = Objects.requireNonNull(CodeGenMain.class.getClassLoader().getResource("")).getPath();
         String evalParentPath = StrUtil.subBefore(path, "code-gen", true);
