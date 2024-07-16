@@ -19,17 +19,18 @@ RUN apk add --no-cache jattach --repository http://mirrors.aliyun.com/alpine/lat
 WORKDIR /data/server/${group}-${projectName}
 
 # 将当前目录下的文件复制到容器中的/app目录下
-COPY ${group}-${projectName}-web/target/*.jar dprs-eval.jar
+COPY ${group}-${projectName}-web/target/*.jar ${group}-${projectName}.jar
 
 # 安装 可选工具（可选）
 #RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
-#RUN apk add vim
+RUN apk add tini
+RUN apk add vim
 
 ENV JAVA_OPTS="-server \
-           -Djava.io.tmpdir=/data/server/dprs-eval/temp \
+           -Djava.io.tmpdir=/data/server/${group}-${projectName}/temp \
            -XX:+HeapDumpOnOutOfMemoryError \
-           -XX:HeapDumpPath=/data/server/dprs-eval/logs/heapdump.hprof \
-           -Xloggc:/data/server/dprs-eval/logs/gc.log \
+           -XX:HeapDumpPath=/data/server/${group}-${projectName}/logs/heapdump.hprof \
+           -Xloggc:/data/server/${group}-${projectName}/logs/gc.log \
            -verbose:gc \
            -XX:+PrintGCDetails \
            -XX:+PrintGCDateStamps \
@@ -39,4 +40,4 @@ ENV JAVA_OPTS="-server \
            -XX:GCLogFileSize=30M"
 
 # 设置启动命令
-ENTRYPOINT ["java", "-jar" ,"dprs-eval.jar"]
+ENTRYPOINT ["java", "-jar" ,"${group}-${projectName}.jar"]
