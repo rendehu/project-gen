@@ -19,15 +19,17 @@
         <dependency>
             <groupId>com.iflytek.medical.mboot</groupId>
             <artifactId>mboot-starter-web</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.iflytek.medical.mboot</groupId>
             <artifactId>tools</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>${groupId}</groupId>
